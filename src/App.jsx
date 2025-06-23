@@ -7,6 +7,7 @@ import {
 import { MdFlashOn } from "react-icons/md";
 import { FaStar } from "react-icons/fa";
 import { useEffect, useState } from "react";
+import SplitText from "./Components/SplitText";
 
 const App = () => {
   const [pokemon, setPokemon] = useState([]);
@@ -68,11 +69,30 @@ const App = () => {
     curPokemon.name.toLowerCase().includes(search.toLowerCase())
   );
 
+
+
+  const handleAnimationComplete = () => {
+  console.log('All letters have animated!');
+};
+
   return (
     <div className="w-full min-h-screen  bg-gradient-to-r from-yellow-300 via-red-400 to-blue-500 p-10">
-      <h1 className="text-white text-4xl font-bold drop-shadow-lg text-center my-3">
-        Welcome to the Pokémon World!
-      </h1>
+      <div className="text-center text-white">
+        <SplitText
+          text="welcome to Pokemon World!"
+          className="text-4xl font-semibold text-center"
+          delay={100}
+          duration={0.6}
+          ease="elastic.out(1,03)"
+          splitType="chars"
+          from={{ opacity: 0, y: 40 }}
+          to={{ opacity: 1, y: 0 }}
+          threshold={0.1}
+          rootMargin="-100px"
+          textAlign="center"
+          onLetterAnimationComplete={handleAnimationComplete}
+        />
+      </div>
       <div id="pokemon-search" className=" text-center my-3">
         <input
           onChange={(e) => setSearch(e.target.value)}
